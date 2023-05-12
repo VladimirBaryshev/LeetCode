@@ -1,7 +1,12 @@
 # LeetCode
 
-# week points:
+# weak points:
 
 1) Read task description as attantive as you can.
-2) Learn and repeat datasructures:
+	Think about edge cases
+
+2) Learn and repeat builtin functions:
 	- default dict from collections
+	- sorted(key with func)
+	- ennumerate as analog of range(len(lst))
+
