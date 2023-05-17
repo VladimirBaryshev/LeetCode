@@ -10,3 +10,5 @@
 	- sorted(key with func)
 	- ennumerate as analog of range(len(lst))
 
+# Not solved (FAILED):
+ 1) https://leetcode.com/problems/merge-intervals/
