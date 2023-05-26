@@ -4,6 +4,10 @@
 
 1) Read task description as attantive as you can.
 	- Think about edge cases
+		- Ask interviewer if edge cases are final and correct
+			- Speak and discusss as precise as you can. That will demostrate that you anderstand task correctlly.
+		- Discuss algoritm first. Mark all logic in docstring.
+			- Coding is last and formal part that should take minimum of time.
 	- English words meaning:
 	-- Top != biggest number. Top = last item in stack
 
