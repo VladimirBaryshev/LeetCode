@@ -16,6 +16,8 @@
 	- sorted(key with func)
 	- ennumerate as analog of range(len(lst))
 
+3) Full reverse (of known solutions) is hard but very usefull
+
 # Not solved (FAILED):
  1) https://leetcode.com/problems/merge-intervals/
 
