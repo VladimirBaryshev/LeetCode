@@ -28,6 +28,7 @@ def lengthOfLongestSubstring(s: str) -> int:
 
 
 
+
 print(lengthOfLongestSubstring(s_1))
 print(lengthOfLongestSubstring(s_2))
 print(lengthOfLongestSubstring(s_3))
