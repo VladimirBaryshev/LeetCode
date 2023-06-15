@@ -17,30 +17,30 @@ class TimeMap:
     def set(self, key: str, value: str, timestamp: int) -> None:
         
         if key not in self.keyStore:
-        	self.keyStore[key] = list()
+            self.keyStore[key] = list()
 
         self.keyStore[key].append(tuple((value, timestamp)))
 
 
     def get(self, key: str, timestamp: int) -> str:
         
-    	res = ""
-    	values = self.keyStore.get(key, [])
+        res = ""
+        values = self.keyStore.get(key, [])
 
-    	l = 0
-    	r = len(values) - 1
+        l = 0
+        r = len(values) - 1
 
-    	while l <= r:
+        while l <= r:
 
-    		m = (l + r) // 2
+            m = (l + r) // 2
 
-    		if values[m][1] <= timestamp:
-    			res = values[m][0]
-    			l = m + 1
-    		else:
-    			r = m - 1
+            if values[m][1] <= timestamp:
+                res = values[m][0]
+                l = m + 1
+            else:
+                r = m - 1
 
-    	return res
+        return res
 
 
 
