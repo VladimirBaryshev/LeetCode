@@ -16,7 +16,7 @@ nums2 = [6,5,4,3,2,1, 7 ]
 # [7,-1,-1,-1,-1]
 # Output: [7,7,7,7,7]
 
-def  next_greater_element(nums1: list[int] , nums2: list[int]) -> list[int]:
+def next_greater_element(nums1: list[int] , nums2: list[int]) -> list[int]:
 
     nums1Idx = { n:i for i, n in enumerate(nums1) }
     res = [-1] * len(nums1)
