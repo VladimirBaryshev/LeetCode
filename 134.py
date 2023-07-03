@@ -18,19 +18,27 @@
 
 def find_starting_gas_station(gas: list[int], cost: list[int]) -> int:
     
-    balance = [i[0] - i[1] for i in zip(gas, cost)]
+    if sum(gas)<sum(cost):
+        return -1
 
-    cur_balance = 0
-    starting_point = 0
+    n = len(gas)
+    diff = [i[0] - i[1] for i in zip(gas, cost)]
 
-    for i in range(len(balance)):
-        cur_balance += balance[i]
-        if balance[i] > 0 and balance[starting_point] < balance[i]:
-            starting_point = i      
+    total = 0
+    res = 0
 
-    if cur_balance >= 0:
-        return starting_point
-    return -1
+    for i in range(n):
+
+        total += diff[i]
+
+        if total < 0:
+            res = i + 1
+            total = 0
+
+    return res
+
+
+
 
 gas = [1,2,3,4,5]
 cost = [3,4,5,1,2]
