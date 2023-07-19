@@ -26,17 +26,19 @@ class Solution:
 
             node, level = queue.pop(0)
 
-            if node and len(result)-1 < level:
-                result.append([])
-            
-            if  node and node.val != None:
-                result[level].append(node.val)
+            if node:
 
-            if node and node.left:
-                queue.append([node.left, level+1])
+                if len(result)-1 < level:
+                    result.append([])
+                
+                if node.val != None:
+                    result[level].append(node.val)
 
-            if node and node.right:
-                queue.append([node.right, level+1])
+                if node.left:
+                    queue.append([node.left, level+1])
+
+                if node.right:
+                    queue.append([node.right, level+1])
 
         return result
 
