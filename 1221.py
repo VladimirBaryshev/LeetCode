@@ -1,5 +1,8 @@
+# 1221. Split a String in Balanced Strings
+# https://leetcode.com/problems/split-a-string-in-balanced-strings/description/
 
-def findBalance(string: str) -> int:
+
+def balancedStringSplit(string: str) -> int:
 
     '''
         string should contains only L and R
@@ -9,10 +12,12 @@ def findBalance(string: str) -> int:
     balance = 0
 
     for char in string:
+
         if char == "L":
             balance += 1
         else:
             balance -= 1
+            
         if balance == 0:
             result_counter += 1
 
@@ -20,10 +25,10 @@ def findBalance(string: str) -> int:
 
 
 
+
 s_1 = "RLRRLLRLRL"
 # Output: 4
 # Explanation: s can be split into "RL", "RRLL", "RL", "RL", each substring contains same number of 'L' and 'R'.
-
 
 s_2 = "RLRRRLLRLL"
 # Output: 2
@@ -32,22 +37,11 @@ s_2 = "RLRRRLLRLL"
 
 s_3 = "LLLLRRRR"
 # Output: 1
-# Explanation: s can be split into "LLLLRRRRLR".
+# Explanation: s can be split into "LLLLRRRR".  
 
 
-print(findBalance(s_1))
-print(findBalance(s_2))
-print(findBalance(s_3))
-
-from collections import Counter
-
-
-
-
-d = Counter('abcdd')
-print(d['d'])
-print(type(d))
-
-
+print(balancedStringSplit(s_1))
+print(balancedStringSplit(s_2))
+print(balancedStringSplit(s_3))
 
 
