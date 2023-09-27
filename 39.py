@@ -3,34 +3,13 @@
 
 
 from typing import List
-from itertools import combinations
 
 
 def combinationSum(candidates: List[int], target: int) -> List[List[int]]:
 
-    # res = []    
-
-    # def dfs(candidates, target, path, res):
-
-    #     print(path)
-
-    #     if target == 0:
-    #         res.append(path)
-    #         return
-
-    #     for i in range(len(candidates)):
-
-    #         if candidates[i] > target:
-    #             continue
-
-    #         dfs(candidates[i:], target-candidates[i], path+[candidates[i]], res)
-
-    # dfs(candidates, target, [], res)
-
     result = []
 
     stack = [[[], candidates, target]]
-
 
     while stack:
 
