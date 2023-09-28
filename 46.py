@@ -18,16 +18,15 @@ def permute(nums: List[int]) -> List[int]:
 
         perm, nums = stack.pop()
 
-        if len(perm) == nums_l and perm not in result:
-            result .append(perm)
-
         for i in range(len(nums)):
 
             if nums[i] not in perm:
 
                 stack.append([perm+[nums[i]], nums])
 
-            # print(stack)
+            if stack and len(stack[-1][0]) == nums_l and stack[-1][0] not in result:
+                temp_perm, _ = stack.pop()
+                result.append(temp_perm)
 
     return result
 
