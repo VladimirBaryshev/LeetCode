@@ -20,15 +20,12 @@ def subsetWithDup(nums: List[int]) -> List[List[int]]:
             res.append(subset[::])
 
         elif i < len(nums):
-            subset.append(nums[i])
+            subset.append(nums[i]) # All subsets that include nums[i]
             stack.append([i+1, subset[::]])
             subset.pop()
             while i+1 < len(nums) and nums[i] == nums[i+1]:
                 i += 1
-            stack.append([i+1, subset[::]])
-        else:
-            pass
-
+            stack.append([i+1, subset[::]]) # All subsets that don't include nums[i]
 
     return res
 
