@@ -9,27 +9,23 @@ def combinationSum2(candidates: List[int], target: int) -> List[List[int]]:
     
     candidates.sort()
 
-
     result = []
-    stack = [[0, [], 0]]
 
-    while stack:
-
-        idx, path, cur_target = stack.pop()
+    def backtrack(idx, path, cur_target):
 
         if cur_target > target:
-            pass
+            return 
 
         elif cur_target == target:
             result.append(path)
-            pass
+            return
 
         for i in range(idx, len(candidates)):
             if i > idx and candidates[i] == candidates[i-1]:
                 continue
-            stack.append([i+1, path+[candidates[i]], cur_target+candidates[i]])
+            backtrack(i+1, path+[candidates[i]], cur_target+candidates[i])
 
-
+    backtrack(0, [], 0)
     return result
 
 
