@@ -13,7 +13,9 @@ def combinationSum2(candidates: List[int], target: int) -> List[List[int]]:
 
     def backtrack(idx, path, cur_target):
 
-        if cur_target > target:
+        print(path)
+
+        if cur_target > target: 
             return 
 
         elif cur_target == target:
@@ -51,6 +53,7 @@ candidates_3 = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 target_3 = 27
 
 print(combinationSum2(candidates_1, target_1))
-print(combinationSum2(candidates_2, target_2))
-print(combinationSum2(candidates_3, target_3))
+# print(combinationSum2(candidates_2, target_2))
+# print(combinationSum2(candidates_3, target_3))
+
 
