@@ -20,10 +20,6 @@ def count_cap(height: List[int]) -> int:
         max_rights.append(max_r)
     max_rights.reverse()
 
-
-    print(max_lefts)
-    print(max_rights)
-
     for i in range(len(height)):
         y = min(max_lefts[i], max_rights[i])
         if y > height[i]:
