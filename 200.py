@@ -2,74 +2,61 @@
 # https://leetcode.com/problems/number-of-islands/
 
 from typing import List
-import heapq
 
 
-def accumulate_(islands):
+class Solution:
 
-    accumulates = []
-    
-    heapq.heapify(islands)
+    def __init__(self, grid):
 
-    while islands:
-        coord = heapq.heappop(islands)
-
-        if accumulates == []:
-            accumulates.append([coord])
-        else:
-            cand_r = [coord[0], coord[1]-1]
-            cand_d = [coord[0]-1, coord[1]]
-
-            if cand_d in accumulates[-1] or cand_r in accumulates[-1]:
-                accumulates[-1].append(coord)
-            else:
-                accumulates.append([coord])
-
-    return accumulates
+        self.grid = grid
+        self.visited = set()
+        self.directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
 
 
-def numIslands(grid: List[List[str]]) -> int:
+    def dfs(self, row: int, column: int) -> List[str]:
+        
+        stack = [[row, column]]
 
-    directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
-    
-    visited = [[False]*len(grid[0]) for i in range(len(grid))]
+        island = []
 
-    d_x, d_y = 0, 0
-    stack = [[0,0]]
+        while stack:
 
-    islands = []
+            x,y = stack.pop()
 
-    while stack:
+            for d_x, d_y in self.directions:
 
-        x,y = stack.pop()
+                if x+d_x >= 0 and x+d_x < len(self.grid):
+                    temp_x = x + d_x
+                else:
+                    temp_x = x
 
-        for d_x, d_y in directions:
-
-            if x+d_x >= 0 and x+d_x < len(grid):
-                temp_x = x + d_x
-            else:
-                temp_x = x
-
-            if y+d_y >=0 and y+d_y < len(grid[0]):
-                temp_y = y + d_y
-            else:
-                temp_y = y
+                if y+d_y >=0 and y+d_y < len(self.grid[0]):
+                    temp_y = y + d_y
+                else:
+                    temp_y = y
 
 
-            if visited[temp_x][temp_y] == False:
+                if (temp_x, temp_y) not in self.visited and self.grid[temp_x][temp_y] == '1':
+                        island.append([temp_x, temp_y])
+                        self.visited.add((temp_x, temp_y))
+                        stack.append([temp_x, temp_y])
 
-                if grid[temp_x][temp_y] == '1':
-
-                    # print('YO:1', temp_x, temp_y)
-                    islands.append([temp_x, temp_y])
-
-                visited[temp_x][temp_y] = True
-                stack.append([temp_x, temp_y])
+        return island
 
 
-    islands = accumulate_(islands)
 
-    return len(islands), islands
+    def numIslands(self) -> int:
+
+        islands = []
+        
+        for row in range(len(self.grid)):
+            for column in range(len(self.grid[0])):
+
+                if (row, column) not in self.visited and self.grid[row][column] == '1':
+                    islands.append(self.dfs(row, column))
+
+        return len(islands)
+
 
 
 grid_0 = [
@@ -119,17 +106,25 @@ grid_6 = [
 ]
 # Output: 1
 
-print(numIslands(grid_0))
-print(numIslands(grid_1))
-print(numIslands(grid_2))
-print(numIslands(grid_3))
-print(numIslands(grid_4))
-print(numIslands(grid_5))
-print(numIslands(grid_6))
+t = Solution(grid_0)
+print(t.numIslands())
 
+t = Solution(grid_1)
+print(t.numIslands())
 
+t = Solution(grid_2)
+print(t.numIslands())
 
+t = Solution(grid_3)
+print(t.numIslands())
 
+t = Solution(grid_4)
+print(t.numIslands())
 
+t = Solution(grid_5)
+print(t.numIslands())
+
+t = Solution(grid_6)
+print(t.numIslands())
 
 
