@@ -72,7 +72,6 @@ class Solution:
                         
                         for x,y in island:
                             board[x][y] = "X"
-        print(board)        
         return None
 
 
