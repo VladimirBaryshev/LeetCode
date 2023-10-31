@@ -1,7 +1,7 @@
 # 994. Rotting Oranges
 # https://leetcode.com/problems/rotting-oranges/
 
-
+from collections import deque
 from typing import List
 
 
@@ -11,83 +11,64 @@ class Solution:
 
         self.grid = None
         self.directions = [(0,1),(1,0),(-1,0),(0,-1)]
-        self.seen = set()
-
-
-    def dfs(self, row_i, column_i):
-
-        coords = (row_i, column_i)
-        self.seen.add(coords)
-        stack = [coords]
-        island = [coords]
-        rottens = set()
-
-        while stack:
-
-            coords = stack.pop()
-            x,y = coords
-
-            if self.grid[x][y] == 2:
-                rottens.add((x,y))
-
-            for d_x, d_y in self.directions:
-
-                if x+d_x >= 0 and x+d_x < len(self.grid):
-                    temp_x = x + d_x
-                else:
-                    temp_x = x
-
-                if y+d_y >=0 and y+d_y < len(self.grid[0]):
-                    temp_y = y + d_y
-                else:
-                    temp_y = y
-
-                if (temp_x, temp_y) not in self.seen and self.grid[temp_x][temp_y] > 0:
-
-                    island.append((temp_x, temp_y))
-                    self.seen.add((temp_x, temp_y))
-                    stack.append((temp_x, temp_y))
-
-        if rottens and len(island) > 1:
-            rot_count = 0
-            while True:
-
-                if set(island).issubset(rottens):
-                    return island, rot_count
-
-                for rot_x, rot_y in rottens.copy():
-                    for x,y in self.directions:
-                        rottens.add((rot_x+x, rot_y+y))
-
-                rot_count += 1        
-
-        if rottens and len(island) == 1:
-            rot_count = 0
-            return island, rot_count
-
-        else:
-            return island, -1
+        self.ROW = None
+        self.COLS = None
 
 
     def orangesRotting(self, grid: List[List[int]]) -> int:
 
         self.grid = grid
+        self.ROW = len(grid)
+        self.COLS = len(grid[0])
 
-        islands = []
+        q = deque()
 
-        for row_i in range(len(grid)):
-            for column_i in range(len(grid[0])):
-                if (row_i, column_i) not in self.seen and self.grid[row_i][column_i] > 0:
-                    island = self.dfs(row_i, column_i)
-                    islands.append(island)
-        
-        print(islands)
-        max_rot_min = 0
-        for _, rot_minutes in islands:
-            if rot_minutes == -1:
-                return -1
-            max_rot_min = max(max_rot_min, rot_minutes)
-        return max_rot_min
+        fresh = 0
+        time = 0
+
+        for row in range(self.ROW):
+            for col in range(self.COLS):
+                if self.grid[row][col] == 1:
+                    fresh += 1
+                if self.grid[row][col] == 2:
+                    q.append((row,col))
+
+        while fresh > 0 and q:
+
+            lenght = len(q)
+
+            for i in range(lenght): # iterate each rotten orange
+                r,c = q.popleft()
+
+
+                for dr, dc in self.directions:
+
+                    row = r + dr
+                    col = c + dc
+
+                    if (
+                            (row >= 0 and row < self.ROW)
+                            and (col >= 0 and col < self.COLS)
+                            and (self.grid[row][col] == 1)
+                        ):
+                        self.grid[row][col] = 2
+                        q.append((row,col))
+                        fresh -= 1
+            time += 1
+
+        if fresh == 0:
+            return time
+        else:
+            return -1
+
+
+
+
+
+
+
+
+
 
 
 grid_1 = [[2,1,1],[1,1,0],[0,1,1]]
@@ -138,16 +119,11 @@ grid_6 = [[0,2,2]]
 
 
 print(Solution().orangesRotting(grid_1))
-# print(Solution().orangesRotting(grid_2))
-# print(Solution().orangesRotting(grid_3))
-# print(Solution().orangesRotting(grid_4))
-# print(Solution().orangesRotting(grid_5))
+print(Solution().orangesRotting(grid_2))
+print(Solution().orangesRotting(grid_3))
+print(Solution().orangesRotting(grid_4))
+print(Solution().orangesRotting(grid_5))
 print(Solution().orangesRotting(grid_6))
-
-
-'''
-    TODO
-'''
 
 
 
