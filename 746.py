@@ -7,29 +7,12 @@ class Solution:
 
     def minCostClimbingStairs(self, costs: List[int]) -> int:
         
-        possible_steps = [1,2]
+        costs.append(0)
 
-        stack = [
-                    [0, 0, [costs[0]]], 
-                    [1, 0, [costs[1]]]
-                ]
+        for i in range(len(costs)-3, -1, -1):
+            costs[i] += min(costs[i+1], costs[i+2])
 
-        min_cost = float("inf")
-
-        while stack:
-
-            cur_i, cur_cost, path = stack.pop()
-
-            for p_s in possible_steps:
-
-                if cur_i+p_s < len(costs):
-                    stack.append([cur_i+p_s, cur_cost+costs[cur_i], path[::]+[costs[cur_i+p_s]]])
-                elif cur_i+p_s == len(costs):
-                    min_cost = min(min_cost, cur_cost+costs[cur_i])
-                    # print(cur_i, cur_i+p_s, cur_cost+costs[cur_i], path)
-
-        return min_cost
-
+        return min(costs[0], costs[1])
 
 
 
