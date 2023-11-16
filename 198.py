@@ -9,7 +9,7 @@ class Solution:
 
     def rob(self, nums: List[int]) -> int:
 
-        # print('nums', nums)
+        print('nums', nums)
 
         rob_1, rob_2 = 0, 0
 
@@ -42,8 +42,9 @@ nums_4 = [2,1,1,2]
 
 
 # print(Solution().rob(nums_1))
-print(Solution().rob(nums_2))
+# print(Solution().rob(nums_2))
 # print(Solution().rob(nums_3))
 # print(Solution().rob(nums_4))
-
+print(Solution().rob(nums_2[1:]))
+print(Solution().rob(nums_2[:-1]))
 
