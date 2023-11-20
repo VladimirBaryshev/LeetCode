@@ -1,53 +1,34 @@
-# 70. Climbing Stairs
-# https://leetcode.com/problems/climbing-stairs/
+from typing import List
 
 
-class Solution:
+def letter_combinations(digits: List[str]) -> List[str]:
 
-    def climbStairs(self, n: int) -> int:
-
-        count_combinations = 0
-
-        possible_stairs = [1, 2]
-
-        stack = [1, [1]], [2, [2]]
-
-        while stack:
-            
-            cur_sum, cur = stack.pop()
-
-            if cur_sum < n:
-                for s in possible_stairs:
-                    stack.append([cur_sum+s, cur[::] + [s]])
-
-            elif cur_sum == n:
-                # print(cur)
-                count_combinations += 1
-
-        return count_combinations
-
-        
+    if len(digits) == 0:
+        return []
+    
+    num_pad = [
+                "",      # 0
+                "",      # 1
+                "abc",   # 2
+                "def",   # 3
+                "ghi",   # 4
+                "jkl",   # 5
+                "mno",   # 6
+                "pqrs",  # 7
+                "tuv",   # 8
+                "wxyz"   # 9
+            ]
 
 
-n_1 = 2
-# Output: 2
-# Explanation: There are two ways to climb to the top.
-# 1. 1 step + 1 step
-# 2. 2 steps
+    stack = [i for i in num_pad[int(digits[0])]] # [a, b, c]
 
-n_2 = 3
-# Output: 3
-# Explanation: There are three ways to climb to the top.
-# 1. 1 step + 1 step + 1 step
-# 2. 1 step + 2 steps
-# 3. 2 steps + 1 step
+    while stack:
+        cur_comb = stack.pop()
+        for l in digits[1:]:
+            stack.append(cur_comb+l)
 
-n_3 = 4
-n_4 = 35
+        print(stack)
 
-print(Solution().climbStairs(n_1))
-print(Solution().climbStairs(n_2))
-print(Solution().climbStairs(n_3))
-print(Solution().climbStairs(n_4))
+digits = "23"
 
-
+letter_combinations(digits)        
