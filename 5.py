@@ -6,10 +6,10 @@ class Solution:
 
     def longestPalindrome(self, s: str) -> str:
 
-        def is_two_shoulder_palindrome(s, left, right):
+        def is_palindrome(s, left, right):
 
             count = 1
-            p = s[left:right+1]
+            p = s[left]#s[left:right+1]
             while (left >= 0 and right < len(s)) and (s[left] == s[right]):
                 if len(s[left:right+1]) > count:
                     count = len(s[left:right+1])
@@ -19,31 +19,18 @@ class Solution:
 
             return p
 
-        def is_one_shoulder_palindrome(s, i):
-
-            init_i = i
-            p = s[i]
-
-            while i+1 < len(s) and s[init_i] == s[i+1]:
-                if len(s[init_i:i+2]) > len(p):
-                    p = s[init_i:i+2]
-                i += 1
-            return p
-
-
             
 
         max_p = s[0]
 
-        for i in range(1, len(s)-1):
+        for i in range(0, len(s)):
 
-            cur = is_two_shoulder_palindrome(s, i, i)
+            cur = is_palindrome(s, i, i)
             if len(cur) > len(max_p):
                 max_p = cur
             # print(i, 'is_two_shoulder_palindrome(s, i, i)', cur)    
 
-        for i in range(0, len(s)):
-            cur = is_one_shoulder_palindrome(s, i)
+            cur = is_palindrome(s, i, i+1)
             if len(cur) > len(max_p):
                 max_p = cur
             # print(i, 'is_one_shoulder_palindrome(s, i)', cur)
@@ -76,6 +63,4 @@ print(Solution().longestPalindrome(s_2))
 print(Solution().longestPalindrome(s_3))
 print(Solution().longestPalindrome(s_4))
 print(Solution().longestPalindrome(s_5))
-
-
-print(Solution().longestPalindrome(s_6)) # TODO !!!!
+print(Solution().longestPalindrome(s_6))
