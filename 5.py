@@ -9,7 +9,7 @@ class Solution:
         def is_palindrome(s, left, right):
 
             count = 1
-            p = s[left]#s[left:right+1]
+            p = s[left]
             while (left >= 0 and right < len(s)) and (s[left] == s[right]):
                 if len(s[left:right+1]) > count:
                     count = len(s[left:right+1])
