@@ -35,7 +35,6 @@ s_3 = "06"
 # Output: 0
 # Explanation: "06" cannot be mapped to "F" because of the leading zero ("6" is different from "06").
 
-
 print(Solution().numDecodings(s_1))
 print(Solution().numDecodings(s_2))
 print(Solution().numDecodings(s_3))
