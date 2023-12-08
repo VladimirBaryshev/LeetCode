@@ -12,9 +12,12 @@ class Solution:
         dp = [amount+1] * (amount+1)
         dp[0] = 0
 
+        print(dp)
+
         for a in range(1, amount+1):
             for coin in coins:
                 if a - coin >= 0:
+                    print(a, coin, dp)
                     dp[a] = min(dp[a], 1 + dp[a - coin])
 
         if dp[amount] != amount+1:
@@ -41,8 +44,8 @@ amount_3 = 0
 # Output: 0
 
 print(Solution().coinChange(coins_1, amount_1))
-print(Solution().coinChange(coins_2, amount_2))
-print(Solution().coinChange(coins_3, amount_3))
+# print(Solution().coinChange(coins_2, amount_2))
+# print(Solution().coinChange(coins_3, amount_3))
 
 
 
