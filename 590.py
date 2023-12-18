@@ -1,24 +1,20 @@
-# 589. N-ary Tree Preorder Traversal
-# https://leetcode.com/problems/n-ary-tree-preorder-traversal/
+# 590. N-ary Tree Postorder Traversal
+# https://leetcode.com/problems/n-ary-tree-postorder-traversal/
 
+from typing import List, Optional 
 
-from typing import List
-
-
+"""
 # Definition for a Node.
 class Node:
-
     def __init__(self, val=None, children=None):
         self.val = val
         self.children = children
-
-
+"""
 
 class Solution:
-
-    def preorder(self, root: 'Node') -> List[int]:
-
-        result = []
+    
+    def postorder(self, root: 'Node') -> List[int]:
+        result = [l]
         stack = [root]
         
         while stack:
@@ -26,14 +22,15 @@ class Solution:
             if cur_node: # if None we don’t pass it
                 result.append(cur_node.val)
                 if cur_node.children:
-                    for node in reversed(cur_node.children):
+                    for node in cur_node.children:
                         stack.append(node)
 
+        result.reverse()
         return result
 
 
 root_1 = [1,null,3,2,4,null,5,6]
-# Output: [1,3,5,6,2,4]
+# Output: [5,6,3,2,4,1]
 
 root_2 = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
-# Output: [1,2,3,6,7,11,14,4,8,12,5,9,13,10]
+# Output: [2,6,14,11,7,3,12,8,4,13,9,10,5,1]
