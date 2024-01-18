@@ -1,29 +1,25 @@
 # 1851. Minimum Interval to Include Each Query
 # https://leetcode.com/problems/minimum-interval-to-include-each-query/description/
 
-
+import heapq
 from typing import List
 
 def minInterval(intervals: List[List[int]], queries: List[int]) -> List[int]:
+    
+    intervals.sort()
+    minHeap = []
+    res = {}
+    i = 0
+    for q in sorted(queries):
+        while i < len(intervals) and intervals[i][0] <= q:
+            l, r = intervals[i]
+            heapq.heappush(minHeap, (r - l + 1, r))
+            i += 1
 
-    absolute_min = intervals[0][0]
-    absolute_max = intervals[0][1]
-
-    for i in intervals[1:]:
-
-        absolute_min = min(absolute_min, i[0])
-        absolute_max = max(absolute_max, i[1])
-
-    mapper = dict((i, -1) for i in range(absolute_min, absolute_max+1))
-
-    for s,e in intervals:
-        for i in range(s, e+1):
-            if mapper[i] == -1:
-                mapper[i] = e-s+1
-            mapper[i] = min(mapper[i], e-s+1)
-
-    return [mapper[q] if q in mapper.keys() else -1 for q in queries]
-
+        while minHeap and minHeap[0][1] < q:
+            heapq.heappop(minHeap)
+        res[q] = minHeap[0][0] if minHeap else -1
+    return [res[q] for q in queries]
         
 
 
