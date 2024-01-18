@@ -6,7 +6,7 @@ from typing import List
 
 def minInterval(intervals: List[List[int]], queries: List[int]) -> List[int]:
 
-    absolute_min = 1 #intervals[0][0]
+    absolute_min = intervals[0][0]
     absolute_max = intervals[0][1]
 
     for i in intervals[1:]:
@@ -22,7 +22,7 @@ def minInterval(intervals: List[List[int]], queries: List[int]) -> List[int]:
                 mapper[i] = e-s+1
             mapper[i] = min(mapper[i], e-s+1)
 
-    return [mapper[q] for q in queries]
+    return [mapper[q] if q in mapper.keys() else -1 for q in queries]
 
         
 
@@ -48,8 +48,8 @@ queries_2 = [2,19,5,22]
 intervals_3 = [[9,9],[6,7],[5,6],[2,5],[3,3]]
 queries_3 = [6,1,1,1,9]
 
-# print(minInterval(intervals_1, queries_1))
-# print(minInterval(intervals_2, queries_2))
+print(minInterval(intervals_1, queries_1))
+print(minInterval(intervals_2, queries_2))
 print(minInterval(intervals_3, queries_3))
 
 
