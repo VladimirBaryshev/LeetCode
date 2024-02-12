@@ -7,14 +7,14 @@ from typing import List
 
 def hammingWeight(n: int) -> int:
 
-	res = 0
+    res = 0
 
-	while n:
-		# print(bin(n))
-		res += n % 2
-		n = n >> 1
+    while n:
+        # print(bin(n))
+        res += n % 2
+        n = n >> 1
 
-	return res
+    return res
 
 
 
