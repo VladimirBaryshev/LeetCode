@@ -3,15 +3,15 @@
 
 
 def reverseBits(n: int) -> int:
-	
-	res = 0
+    
+    res = 0
 
-	for i in range(32):
-		bit = (n >> i)&1
-		res = res | (bit << (31 - i))
-		# print(bin(n >> i), bit, res)
+    for i in range(32):
+        bit = (n >> i)&1
+        res = res | (bit << (31 - i))
+        # print(bin(n >> i), bit, res)
 
-	return res
+    return res
 
 
 n_1 = 0b00000010100101000001111010011100
