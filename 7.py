@@ -1,4 +1,10 @@
+# 7. Reverse Integer
+# https://leetcode.com/problems/reverse-integer/description/
+
 def reverse(x: int) -> int:
+
+	if x == 0:
+		return 0
 
     result = ''
 
