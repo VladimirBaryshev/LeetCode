@@ -4,23 +4,21 @@
 def uniquePaths(m: int, n: int) -> int:
     
     stack = [(0,0)]
-    m -= 1
-    n -= 1
+    coords = []
+    costs = dict()
 
-    count = 0
+    for y in range(m):
+        for x in range(n):
+            coords.append((y,x))
 
-    while stack:
+    for y,x in coords[::-1]:
+        if y+1 == m or x+1 == n:
+            costs[(y,x)] = 1
+        else:
+            costs[(y,x)] = costs[(y+1,x)] + costs[(y,x+1)]
 
-        cur_y, cur_x = stack.pop()
+    return costs[(0,0)]
 
-        if cur_y < m:
-            stack.append((cur_y+1, cur_x))
-        if cur_x < n:
-            stack.append((cur_y, cur_x+1))
-        if cur_y == m and cur_x == n:
-            count += 1
-
-    return count
 
 
 m_1 = 3
