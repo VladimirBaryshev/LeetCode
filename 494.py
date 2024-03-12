@@ -7,30 +7,24 @@ from typing import List
 
 def findTargetSumWays(nums: List[int], target: int) -> int:
         
-    count = 0
-    stack = [[(0, nums[0])], [(0, nums[0]*-1)]]
+    cache = dict()
 
-    while stack:
+    def backtrack(i, total):
 
-        # print(stack)
+        if i == len(nums):
+            if total == target:
+                return 1
+            else:
+                return 0
 
-        path = stack.pop()
-        i, cur_total = path[-1]
-        # print(i, cur_total)
-        if i == len(nums)-1 and cur_total == target:
-            count += 1
+        if (i, total) in cache:
+            return cache[(i, total)]
 
-        if i+1 < len(nums):
-            cur_path = path[::]
-            cur_path.append((i+1, cur_total+nums[i+1]))
-            stack.append(cur_path)
+        cache[(i, total)] = backtrack(i+1, total+nums[i]) + backtrack(i+1, total-nums[i])
 
-            cur_path = path[::]
-            cur_path.append((i+1, cur_total-nums[i+1]))
-            stack.append(cur_path)
+        return cache[(i, total)]
 
-    return count
-
+    return backtrack(0, 0)
 
 
 
@@ -49,4 +43,4 @@ target_2 = 1
 # Output: 1
 
 print(findTargetSumWays(nums_1, target_1))
-# print(findTargetSumWays(nums_2, target_2))
+print(findTargetSumWays(nums_2, target_2))
