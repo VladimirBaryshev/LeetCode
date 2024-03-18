@@ -7,34 +7,22 @@ from typing import List
 
 def change(amount: int, coins: List[int]) -> int:
     
-    if amount == 0:
-        return 1
 
-    count = set()
-    t = {i:0 for i in coins}
-    stack = []
+    dp = [0]*(amount+1)
+    dp[0] = 1
 
-    for c in coins:
-        d = {i:0 for i in coins}
-        d[c] += 1
-        stack.append([d, c])
+    for i in range(len(coins)-1,-1,-1):
+        next_dp = [0]*(amount+1)
+        next_dp[0] = 1
 
-    while stack:
-        temp_d, temp_sum = stack.pop()
-        for c in coins:
-            temp_d_copy = temp_d.copy()
-            if temp_sum == amount:
-                count.add(tuple(temp_d_copy.values()))
-            if c + temp_sum < amount:
-                temp_d_copy[c] += 1
-                stack.append([temp_d_copy, temp_sum+c])
-            if c + temp_sum == amount:
-                temp_d_copy[c] += 1
-                count.add(tuple(temp_d_copy.values()))
+        for a in range(1, amount+1):
+            next_dp[a] = dp[a] 
+            if a - coins[i] >= 0:
+                next_dp[a] += next_dp[a - coins[i]]
 
-    return len(count)
+        dp = next_dp        
 
-
+    return dp[amount]
 
 amount_1 = 5
 coins_1 = [1,2,5]
@@ -59,8 +47,8 @@ coins_4 = [7]
 # Output: 1
 
 
-# print(change(amount_1, coins_1))
-# print(change(amount_2, coins_2))
-# print(change(amount_3, coins_3))
+print(change(amount_1, coins_1))
+print(change(amount_2, coins_2))
+print(change(amount_3, coins_3))
 print(change(amount_4, coins_4))
 
