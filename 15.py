@@ -3,58 +3,24 @@
 
 
 from typing import List
-from itertools import permutations
-
-
-def check_sum(i,j,x,d):
-
-    d[i] -= 1
-    d[j] -= 1
-    if x in d.keys():
-        if d[x] > 0:
-            return True
-    return False
-
 
 def threeSum(nums: List[int]) -> List[List[int]]:
-
-    d = dict()
-        
-    for i in nums:
-        if i not in d.keys():
-            d[i] = 1
-        else:
-            d[i] += 1
-
-    pairs = set()
-    if len(d.keys()) < 2:
-        for i in permutations(nums, r=2):
-            pairs.add(tuple(sorted(i)))
-    else:
-        for i in permutations(d.keys(), r=2):
-            pairs.add(tuple(sorted(i)))
-
-
     triplets = set()
-    for i,j in pairs:
-        x = -1*(i+j)
-        if tuple(sorted((i,j,x))) not in triplets:
-            if check_sum(i,j,x, dict((k,v) for k,v in d.items() if k in [i,j,x])):
-                t = tuple(sorted((i,j,x)))
-                triplets.add(t)
-    
+    nums.sort()
+    for i in range(len(nums)):
+        first = i
+        second = i + 1
+        third = len(nums) - 1
+        while second < third:
+            curSum = nums[first] + nums[second] + nums[third]
+            if curSum > 0:
+                third -= 1
+            elif curSum < 0:
+                second += 1
+            else:
+                triplets.add((nums[first] , nums[second] , nums[third]))
+                second += 1
     return triplets
-
-
-    
-        
-
-        
-
-
-
-
-
 
 
 nums_1 = [-1,0,1,2,-1,-4] # [-4, -1, -1, 0, 1, 2]
