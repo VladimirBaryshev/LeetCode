@@ -24,7 +24,7 @@ class Solution:
                 nums1[cursor] = nums2[r]
                 r -= 1
 
-            cursor -= 1 
+            cursor -= 1
 
         return nums1
 
@@ -82,5 +82,3 @@ print(Solution().merge(**t1))
 print(Solution().merge(**t2))
 print(Solution().merge(**t3))
 print(Solution().merge(**t4))
-
-

@@ -1,55 +1,86 @@
 from typing import List
 
 
-def spiral(matrix: List[List[int]]) -> List[int]:
+class Solution:
 
-    res = []
-    row_start, row_end = 0, len(matrix) - 1
-    col_start, col_end = 0, len(matrix[0]) - 1
-    
-    while True:
-        
-        # UPPER ROW
-        if row_start > row_end:
-            break
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
 
-        for i in range(col_start, col_end + 1):
-            res.append(matrix[row_start][i])
-        row_start += 1
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
         
-        # if row_start > row_end:
-        #     break
-        
-        # RIGHT COL
-        if col_start > col_end:
-            break
-        for i in range(row_start, row_end + 1):
-            res.append(matrix[i][col_end])
-        col_end -= 1
-        
-        # if col_start > col_end:
-        #     break
-        
-        # LOWER ROW
-        if row_start > row_end:
-            break
-        for i in range(col_end, col_start - 1, -1):
-            res.append(matrix[row_end][i])
-        row_end -= 1
+        l = m-1
+        r = n-1
+        cursor = m+n-1
 
-        # if row_start > row_end:
-        #     break
-        
-        # LEFT COL
-        if col_start > col_end:
-            break
-        for i in range(row_end, row_start - 1, -1):
-            res.append(matrix[i][col_start])
-        col_start += 1
-        
-        # if col_start > col_end:
-        #     break
-        
-    return res  
+        while r >= 0:
+            if (l >= 0) and (nums1[l] > nums2[r]):
+                nums1[cursor] = nums1[l]
+                l -= 1
+            else:
+                nums1[cursor] = nums2[r]
+                r -= 1
+            cursor -= 1
 
-print(spiral([[1,2,3],[4,5,6],[7,8,9]]))  
+        return nums1
+
+
+
+
+
+
+
+
+        
+
+
+
+
+t1 = {
+    "nums1" : [1,2,3,0,0,0], 
+    "m": 3, 
+    "nums2" : [2,5,6], 
+    "n" : 3    
+}
+
+# Output: [1,2,2,3,5,6]
+# Explanation: The arrays we are merging are [1,2,3] and [2,5,6].
+# The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.
+
+
+t2 = {
+    "nums1" : [1], 
+    "m" : 1, 
+    "nums2" : [], 
+    "n" : 0    
+}
+# Output: [1]
+# Explanation: The arrays we are merging are [1] and [].
+# The result of the merge is [1].
+
+t3 = {
+    "nums1" : [0], 
+    "m" : 0, 
+    "nums2" : [1], 
+    "n" : 1    
+}
+# Output: [1]
+# Explanation: The arrays we are merging are [] and [1].
+# The result of the merge is [1].
+# Note that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.
+#         
+
+
+t4 = {
+    "nums1" : [4,5,6,0,0,0],
+    "m" : 3,
+    "nums2" : [1,2,3],
+    "n" : 3
+}
+
+# [1,2,3,4,5,6]
+
+print(Solution().merge(**t1))
+print(Solution().merge(**t2))
+print(Solution().merge(**t3))
+print(Solution().merge(**t4))
