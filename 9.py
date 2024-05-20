@@ -6,13 +6,13 @@ class Solution:
 
     def isPalindrome(self, x: int) -> bool:
 
-    	x = [i for i in str(x)]
+        x = [i for i in str(x)]
 
-    	while len(x) >= 2:
-    		if x.pop(0) != x.pop():
-    			return False
+        while len(x) >= 2:
+            if x.pop(0) != x.pop():
+                return False
 
-    	return True
+        return True
 
 
 
