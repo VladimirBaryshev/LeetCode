@@ -14,18 +14,18 @@ class Solution:
         while left!=right:
             #check from last bit of each
             #As they not equal means current checked last bit 0 in answer
-            # print("{0:b}".format(left), "{0:b}".format(right), bitc)
+            print("{0:b}".format(left), "{0:b}".format(right), bitc)
             left = left >>1
-            # print("{0:b}".format(left), "{0:b}".format(right), bitc)
+            print("{0:b}".format(left), "{0:b}".format(right), bitc)
             right = right >>1
-            # print("{0:b}".format(left), "{0:b}".format(right), bitc)
+            print("{0:b}".format(left), "{0:b}".format(right), bitc)
             bitc+=1
-            # print("{0:b}".format(left), "{0:b}".format(right), bitc)
+            print("{0:b}".format(left), "{0:b}".format(right), bitc)
 
-            # print('')
+            print('')
 
-        # return "{0:b}".format(right<<bitc), right<<bitc
-        return right<<bitc
+        return "{0:b}".format(right<<bitc), right<<bitc
+        # return right<<bitc
 
 
 
