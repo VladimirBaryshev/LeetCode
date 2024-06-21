@@ -1,5 +1,10 @@
-coms = ["RandomizedSet","insert","remove","insert","remove","getRandom","getRandom","getRandom","getRandom","getRandom","getRandom","getRandom","getRandom","getRandom","getRandom"]
-args = [[],[0],[0],[-1],[0],[],[],[],[],[],[],[],[],[],[]]
+t = [1,2,3]
 
-for i in zip(coms, args):
+
+print(t)
+
+for i in t[:5]:
     print(i)
+    t[i] += 10
+
+print(t)
