@@ -21,7 +21,7 @@ class Solution:
         res = []
 
         while stack:
-            root, val = stack.pop(0)
+            root, val = stack.pop(0) # DFS
 
             if root and root.left:
                 stack.append([root.left, val+str(root.val)])
@@ -29,7 +29,7 @@ class Solution:
             if root and root.right:
                 stack.append([root.right, val+str(root.val)])
 
-            if root.left == None and root.right == None:
+            if root.left == None and root.right == None: # END OF PATH
                 res.append(val+str(root.val))
             
         
@@ -37,4 +37,3 @@ class Solution:
     
             
 
-        
