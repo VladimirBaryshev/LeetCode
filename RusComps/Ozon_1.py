@@ -11,10 +11,12 @@ from typing import List
 
 def find_pair(nums: List[int]) -> int:
     
-    min_val1, min_val2 = 0, 0
-    max_val1, max_val2 = 0, 0
+    min_val1, min_val2 = min(nums[0], nums[1]), max(nums[0], nums[1])
+    max_val1, max_val2 = max(nums[0], nums[1]), min(nums[0], nums[1])
 
-    for num in nums:
+    for i in range(2, len(nums)):
+
+        num = nums[i]
 
         if num < 0:
 
@@ -41,6 +43,7 @@ nums_2 = [-2, 1, -5, 4, -1, 2, 1, -5, 4] #25
 nums_3 = [0,0] #0
 nums_4 = [-1,-1] #1
 nums_5 = [-1,0] #0
+nums_6 = [1,-1] # -1
 
 
 print(find_pair(nums_1))
@@ -48,6 +51,7 @@ print(find_pair(nums_2))
 print(find_pair(nums_3))
 print(find_pair(nums_4))
 print(find_pair(nums_5))
+print(find_pair(nums_6))
 
 
 
