@@ -38,8 +38,17 @@ def find_pair(nums: List[int]) -> int:
 
 nums_1 = [-2, 1, -3, 4, -1, 2, 1, -5, 4] #16
 nums_2 = [-2, 1, -5, 4, -1, 2, 1, -5, 4] #25
+nums_3 = [0,0] #0
+nums_4 = [-1,-1] #1
+nums_5 = [-1,0] #0
 
 
 print(find_pair(nums_1))
 print(find_pair(nums_2))
+print(find_pair(nums_3))
+print(find_pair(nums_4))
+print(find_pair(nums_5))
+
+
+
 
