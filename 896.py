@@ -23,7 +23,7 @@ class Solution:
             if nums[i-1] == nums[i]:
                 equals += 1
 
-        return len(nums)-1 == (abs(ascends - descends) + equals) # len(nums)-1 == abs(ascends)
+        return len(nums)-1 == (abs(ascends - descends) + equals)
 
 
 

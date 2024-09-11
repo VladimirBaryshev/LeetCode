@@ -6,6 +6,21 @@ from typing import List
 
 class Solution:
 
+    def numIdenticalPairs_2(self, nums: List[int]) -> int:
+        
+        d = dict()
+        count = 0
+
+        for i in nums:
+            if i in d.keys():
+                count += d[i]
+                d[i] += 1
+            else:
+                d[i] = 1
+
+        return count
+
+
     def numIdenticalPairs(self, nums: List[int]) -> int:
         
         count = 0 
@@ -30,7 +45,10 @@ nums_2= [1,1,1,1]
 nums_3 = [1,2,3]
 # Output: 0     
 
-print(Solution().numIdenticalPairs(nums_1))
-print(Solution().numIdenticalPairs(nums_2))
-print(Solution().numIdenticalPairs(nums_3))
+# print(Solution().numIdenticalPairs(nums_1))
+# print(Solution().numIdenticalPairs(nums_2))
+# print(Solution().numIdenticalPairs(nums_3))
+print(Solution().numIdenticalPairs_2(nums_1))
+print(Solution().numIdenticalPairs_2(nums_2))
+print(Solution().numIdenticalPairs_2(nums_3))
 
