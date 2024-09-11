@@ -38,8 +38,11 @@ nums_3 = [3,7]
 # Output: 16
 # Explanation: 4 * 4 = 16
 
+
 print(Solution().maxProduct(nums_1))
 print(Solution().maxProduct(nums_2))
 print(Solution().maxProduct(nums_3))
+
+
 
 

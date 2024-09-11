@@ -55,4 +55,3 @@ print(find_pair(nums_6))
 
 
 
-
