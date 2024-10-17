@@ -10,18 +10,18 @@ class Solution:
         for mask in range(1, 2**N):
             subseq = ""
             for i in range(N):
-                # print(mask, i)
+                print(mask, i, bin(mask), bin(i), bin(1<<i))
                 if mask & (1<<i):
-                    # print("if", mask, 1<<i, bin(mask), bin(1<<i), bin(mask & (1<<i)))
+                    print("if", mask, 1<<i, bin(mask), bin(1<<i), bin(mask & (1<<i)))
                     subseq += s[i]
-            if subseq == subseq[::-1]:
-                # print(subseq)        
-                d[mask] = [len(subseq), bin(mask), subseq]
+        #     if subseq == subseq[::-1]:
+        #         # print(subseq)        
+        #         d[mask] = [len(subseq), bin(mask), subseq]
 
-        for m1 in d.items():
-            for m2 in d.items():
-                if m1[0] & m2[0] == 0:
-                    print(m1,m2)
+        # for m1 in d.items():
+        #     for m2 in d.items():
+        #         if m1[0] & m2[0] == 0:
+        #             print(m1,m2)
 
 
 s_1 = "leetcodecom"
