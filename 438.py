@@ -7,6 +7,10 @@ class Solution:
 
     def countSubstring(self, substr: str) -> str:
         
+        # we don't use it because Leetcode retuned Time Limit exception
+        # but the logic is the same
+        # Slower then collections.Counter
+
         counted = dict()
         for i in substr:
             counted[i] = counted.get(i,0)
@@ -16,12 +20,13 @@ class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
 
         L = len(p)
-        # counted = self.countSubstring(p)
-        counted = Counter(p)
+        # counted = self.countSubstring(p) # Using selfwritten Counter wehave got Time Limit exception
+        counted = Counter(p) # Let's use the built-in version of this function.
 
         result = []
         for i,v in enumerate(s):
-            if v in counted.keys() and Counter(s[i:i+L]) == counted:
+            # if self.countSubstring(s[i:i+L]) == counted:
+            if Counter(s[i:i+L]) == counted:
                 result.append(i)
         return result
 
