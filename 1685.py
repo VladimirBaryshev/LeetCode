@@ -9,18 +9,28 @@ class Solution:
 
     def getSumAbsoluteDifferences(self, nums: List[int]) -> List[int]:
 
-        d = defaultdict(int)
+        n = len(nums)
+        prefix = [0 for i in range(n)]
+        suffix = [0 for i in range(n)]
 
-        for i in range(len(nums)):
-            for j in range(i+1, len(nums)):
-                r = abs(nums[i] - nums[j])
-                d[i] += r
-                d[j] += r
+        prefix[0] = nums[0]
+        for i in range(1,n):
+            prefix[i] = prefix[i-1] + nums[i]
 
-        return [d[k] for k in d.keys()]
+        suffix[-1] = nums[-1]
+        for i in range(n-2,-1,-1):
+            suffix[i] = suffix[i+1] + nums[i]
 
+        result = []
+        for i in range(n):
+            # Calculate left and right sums efficiently using prefix and suffix sums
+            left_sum = i * nums[i] - prefix[i]
+            right_sum = suffix[i] - (n - i - 1) * nums[i]
 
+            # Calculate the total sum of absolute differences
+            result.append(left_sum + right_sum)
 
+        return result
 
 nums_1 = [2,3,5]
 # Output: [4,3,5]
