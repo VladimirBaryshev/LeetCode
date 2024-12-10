@@ -1,13 +1,11 @@
 # 406. Queue Reconstruction by Height
 
 from typing import List
-from collections import defaultdict
 
 class Solution:
     def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
         
         r = []
-        d = defaultdict(list)
         people.sort(key=lambda x: (-x[0], x[1]))
         # print(people)
         for p in people:
