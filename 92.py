@@ -21,15 +21,6 @@ class Solution:
         result.append(cur.val)
         head_pointers.append(cur)
 
-
-        # l = 0
-        # r = 0
-        # for i,v in enumerate(result):
-            # if v == left:
-                # l = i
-            # elif v == right:
-                # r = i+1
-
         t = result[left-1:right]
         t.reverse()
         result[left-1:right] = t
