@@ -6,7 +6,6 @@ class Solution:
     def countGoodRectangles(self, rectangles: List[List[int]]) -> int:
         minLen = tuple(min(i) for i in rectangles)
         maxLen = max(minLen)
-        # return minLen
         return len(tuple(i for i in minLen if maxLen == i))
 
 
